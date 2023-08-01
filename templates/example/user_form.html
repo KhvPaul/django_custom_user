@@ -1,0 +1,22 @@
+{% extends "base_generic.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+    <div class="bd-example">
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+<form method="post" action="{% url 'example:user_update' %}">
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="mb-3">
+            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {% render_field field class+="form-control"%}
+        </div>
+    {% endfor %}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}
