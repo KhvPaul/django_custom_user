@@ -14,21 +14,21 @@
     </thead>
     <tbody>
         {% for object in user_list %}
-          <tr>
-            <td>{{ object.id }}</td>
-            <td>{{ object.username }}</td>
-            <td>{{ object.email }}</td>
-            <td>{{ object.first_name }}</td>
-            <td>{{ object.last_name }}</td>
-            {% if object == user %}
-                <td>
-                <a class="btn btn-warning btn-sm" href="{% url 'example:user_update' %}">
-                    <span class="glyphicon glyphicon-pencil"></span> Edit
-                </a>
-                </td>
-          {% else %}
-                <td></td>
-          {% endif %}
+            <tr>
+                <td>{{ object.id }}</td>
+                <td><a href="{% url "example:user_detail" object.id %}">{{ object.username }}</a></td>
+                <td>{{ object.email }}</td>
+                <td>{{ object.first_name }}</td>
+                <td>{{ object.last_name }}</td>
+                {% if request.user == object %}
+                    <td>
+                    <a class="btn btn-warning btn-sm" href="{% url 'example:user_update' %}">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </a>
+                    </td>
+              {% else %}
+                    <td></td>
+              {% endif %}
           </tr>
         {% empty %}
           <tr>
